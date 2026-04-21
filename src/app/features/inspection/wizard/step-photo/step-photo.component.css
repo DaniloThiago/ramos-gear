@@ -5,6 +5,8 @@
   border-radius: 24px;
   background: rgba(15, 23, 42, 0.72);
   border: 1px solid rgba(148, 163, 184, 0.14);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .eyebrow {
@@ -28,11 +30,13 @@ p {
   display: grid;
   gap: 14px;
   justify-items: start;
+  min-width: 0;
 }
 
 .photo-preview {
   display: grid;
   gap: 14px;
+  min-width: 0;
 }
 
 .photo-preview img {
@@ -41,12 +45,14 @@ p {
   object-fit: cover;
   border-radius: 20px;
   border: 1px solid rgba(148, 163, 184, 0.16);
+  max-width: 100%;
 }
 
 .photo-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .secondary,
@@ -58,6 +64,12 @@ p {
   cursor: pointer;
 }
 
+.photo-actions .secondary,
+.photo-actions .primary {
+  flex: 1 1 220px;
+  width: 100%;
+}
+
 .primary {
   background: linear-gradient(135deg, #ff4b52, #e11d2e);
   color: #fff;
@@ -67,4 +79,17 @@ p {
   background: rgba(148, 163, 184, 0.12);
   color: #edf2f7;
   border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+@media (max-width: 760px) {
+  .photo-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .photo-actions .secondary,
+  .photo-actions .primary {
+    width: 100%;
+    flex: none;
+  }
 }

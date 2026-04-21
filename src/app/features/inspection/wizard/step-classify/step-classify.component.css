@@ -5,6 +5,8 @@
   border-radius: 24px;
   background: rgba(15, 23, 42, 0.72);
   border: 1px solid rgba(148, 163, 184, 0.14);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .eyebrow {
@@ -20,6 +22,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(180px, 0.4fr);
   gap: 16px;
   align-items: start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 h2 {
@@ -48,6 +52,8 @@ p {
   padding-bottom: 6px;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .radio-grid--two-by-two {
@@ -68,6 +74,7 @@ p {
   justify-items: center;
   text-align: center;
   min-width: 0;
+  max-width: 100%;
   scroll-snap-align: start;
 }
 
@@ -116,6 +123,7 @@ p {
 .notes {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .notes span {
@@ -132,6 +140,7 @@ textarea {
   background: rgba(2, 6, 23, 0.72);
   color: #f8fbff;
   outline: none;
+  max-width: 100%;
 }
 
 .footer {
@@ -139,6 +148,7 @@ textarea {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .secondary,
@@ -172,10 +182,16 @@ textarea {
   }
 
   .radio-grid {
-    grid-auto-columns: minmax(140px, 82%);
+    grid-auto-flow: initial;
+    grid-template-columns: 1fr;
+    overflow-x: visible;
   }
 
   .radio-grid--two-by-two {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+  }
+
+  .radio-card span {
+    white-space: normal;
   }
 }

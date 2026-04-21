@@ -136,4 +136,52 @@
   .diagram-grid {
     gap: 16px;
   }
+
+  .diagram-card {
+    padding: 14px 14px 16px;
+  }
+
+  .diagram-panel {
+    gap: 8px;
+  }
+
+  .diagram-panel__header {
+    gap: 8px;
+  }
+
+  .diagram-stage {
+    margin-top: 2px;
+  }
+
+  .marker {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .marker span {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .diagram-card {
+    padding: 12px 10px 14px;
+  }
+
+  .diagram-panel h3 {
+    font-size: 0.95rem;
+  }
+
+  .side-badge {
+    padding: 7px 10px;
+  }
+
+  .marker {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .marker span {
+    font-size: 0.64rem;
+  }
 }
