@@ -1,0 +1,69 @@
+<main class="login-page">
+  <section class="hero-card">
+    <p class="eyebrow">ui-kit-dark / etapa 2</p>
+    <h1>Entrar no App Ramos Gear</h1>
+    <p class="subtitle">
+      Acesso simples, rapido e autoexplicativo para vistoriadores em campo.
+    </p>
+
+    <div class="content-grid">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label>
+          <span>E-mail</span>
+          <input type="email" formControlName="email" placeholder="voce@empresa.com" autocomplete="email" />
+          @if (email.touched && email.errors?.['required']) {
+            <small>Informe o e-mail.</small>
+          }
+          @if (email.touched && email.errors?.['email']) {
+            <small>Informe um e-mail valido.</small>
+          }
+        </label>
+
+        <label>
+          <span>Senha</span>
+          <input type="password" formControlName="password" placeholder="Sua senha" autocomplete="current-password" />
+          @if (password.touched && password.errors?.['required']) {
+            <small>Informe a senha.</small>
+          }
+          @if (password.touched && password.errors?.['minlength']) {
+            <small>A senha deve ter pelo menos 6 caracteres.</small>
+          }
+        </label>
+
+        @if (authError) {
+          <div class="error-box">E-mail ou senha incorretos.</div>
+        }
+
+        <button class="primary" type="submit" [disabled]="form.invalid">
+          Entrar
+        </button>
+      </form>
+
+      <aside class="side-card">
+        <div class="badge">Demo pronta</div>
+        <h2>Fluxo preparado para o MVP</h2>
+        <p>
+          Entre com um dos acessos de teste abaixo. O sistema valida a sessão no browser e redireciona
+          para o dashboard protegido.
+        </p>
+
+        <div class="credential-list">
+          @for (account of demoAccounts; track account.email) {
+            <div class="credential">
+              <span>{{ account.label }}</span>
+              <strong>{{ account.email }}</strong>
+              <em>Senha: 123456</em>
+            </div>
+          }
+        </div>
+
+        <ul class="highlights">
+          @for (item of highlights; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </aside>
+    </div>
+
+  </section>
+</main>

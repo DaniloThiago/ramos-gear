@@ -1,0 +1,18 @@
+<main class="page-shell">
+  <section class="panel">
+    <p class="eyebrow">Dashboard</p>
+    <h1>Bem-vindo, {{ auth.user()?.name }}</h1>
+    <p class="subtitle">
+      Base protegida pronta para receber a lista de vistorias, métricas e atalhos operacionais.
+    </p>
+
+    <div class="actions">
+      <a class="primary" routerLink="/inspection">+ Nova Vistoria</a>
+      @if (auth.isAdmin()) {
+        <a class="secondary" routerLink="/admin">Painel Admin</a>
+      }
+      <button class="ghost" type="button" (click)="auth.logout()">Sair</button>
+    </div>
+  </section>
+</main>
+

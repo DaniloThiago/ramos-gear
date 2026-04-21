@@ -1,0 +1,41 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at top, rgba(20, 184, 166, 0.12), transparent 34%),
+    linear-gradient(180deg, #06101a 0%, #09141f 100%);
+}
+
+.app-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  color: #dffaf5;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-mark {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5eead4, #0f766e);
+  box-shadow: 0 0 18px rgba(94, 234, 212, 0.45);
+}
+
+.pill {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  color: #9fb0c1;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
