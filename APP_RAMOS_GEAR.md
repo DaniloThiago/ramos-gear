@@ -1130,23 +1130,23 @@ compressImage(file: File, maxWidth = 1280, quality = 0.7): Promise<string> {
 
 ---
 
-#### Etapa 6 — Resumo e diagrama SVG ⏳ não iniciado
+#### Etapa 6 — Resumo e diagrama SVG ✅ concluida
 
 **Checklist:**
-- [ ] Criar `src/app/shared/components/vehicle-diagram/vehicle-diagram.component.ts` recebendo `@Input() items: InspectionItemResult[]`
-- [ ] Criar SVG inline (vista superior do veículo) com `id` em cada `<rect>` correspondendo ao `vehiclePart`
-- [ ] Implementar `partColor(vehiclePart: string): string` aplicando `COLOR_MAP` ao pior resultado da peça
-- [ ] Bindar `[attr.fill]="partColor(part)"` em cada `<rect>` do SVG
-- [ ] Adicionar legenda de cores abaixo do SVG (Verde / Amarelo / Laranja / Vermelho / Cinza)
-- [ ] Criar `src/app/features/inspection/summary/summary.component.ts` lendo draft via `InspectionService.loadDraft()`
-- [ ] Implementar `suggestDecision(items)` e pré-selecionar o resultado sugerido
-- [ ] Criar `src/app/features/inspection/summary/summary.component.html`
-- [ ] Exibir lista de todos os itens com miniatura da foto + classificação atribuída
-- [ ] Exibir `VehicleDiagramComponent` com os itens do draft
-- [ ] Três botões de decisão final; o sugerido aparece destacado (borda ou fundo)
-- [ ] Campo de observações gerais da vistoria (opcional)
-- [ ] Botão "Gerar Laudo PDF" navega para `/report` passando a decisão escolhida
-- [ ] Registrar rota `/inspection/summary` em `inspection.routes.ts`
+- [x] Criar `src/app/shared/components/vehicle-diagram/vehicle-diagram.component.ts` recebendo `@Input() items: InspectionItemResult[]`
+- [x] Criar SVG inline (vista superior do veículo) com `id` em cada `<rect>` correspondendo ao `vehiclePart`
+- [x] Implementar `partColor(vehiclePart: string): string` aplicando `COLOR_MAP` ao pior resultado da peça
+- [x] Bindar `[attr.fill]="partColor(part)"` em cada `<rect>` do SVG
+- [x] Adicionar legenda de cores abaixo do SVG (Verde / Amarelo / Laranja / Vermelho / Cinza)
+- [x] Criar `src/app/features/inspection/summary/summary.component.ts` lendo draft via `InspectionService.loadDraft()`
+- [x] Implementar `suggestDecision(items)` e pré-selecionar o resultado sugerido
+- [x] Criar `src/app/features/inspection/summary/summary.component.html`
+- [x] Exibir lista de todos os itens com miniatura da foto + classificação atribuída
+- [x] Exibir `VehicleDiagramComponent` com os itens do draft
+- [x] Três botões de decisão final; o sugerido aparece destacado (borda ou fundo)
+- [x] Campo de observações gerais da vistoria (opcional)
+- [x] Botão "Gerar Laudo PDF" navega para `/report` passando a decisão escolhida
+- [x] Registrar rota `/inspection/summary` em `inspection.routes.ts`
 
 **Entregável:** tela de resumo com diagrama funcional e seleção da decisão final.
 

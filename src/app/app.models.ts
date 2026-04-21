@@ -76,4 +76,5 @@ export interface AppDraft {
   itemCursor: number;
   items: InspectionItemResult[];
   decision: FinalDecision;
+  generalNotes?: string;
 }

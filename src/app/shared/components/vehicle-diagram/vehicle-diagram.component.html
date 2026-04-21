@@ -1,0 +1,50 @@
+<section class="diagram-card">
+  <div class="diagram-grid">
+    @for (side of sides; track side.key) {
+      <article class="diagram-panel">
+        <header class="diagram-panel__header">
+          <div>
+            <p class="eyebrow">{{ side.title }}</p>
+            <h3>{{ side.subtitle }}</h3>
+          </div>
+          <span class="side-badge">{{ side.key === 'front' ? 'Dianteira' : 'Traseira' }}</span>
+        </header>
+
+        <div class="diagram-stage">
+          <img
+            class="diagram-image"
+            [src]="imagePath(side.key)"
+            [alt]="side.key === 'front' ? 'Imagem frontal do veiculo' : 'Imagem traseira do veiculo'"
+          />
+
+          @for (marker of markersFor(side.key); track marker.id) {
+            <button
+              type="button"
+              class="marker"
+              [class.marker--gray]="marker.tone === 'gray'"
+              [class.marker--green]="marker.tone === 'green'"
+              [class.marker--yellow]="marker.tone === 'yellow'"
+              [class.marker--orange]="marker.tone === 'orange'"
+              [class.marker--red]="marker.tone === 'red'"
+              [style.left.%]="marker.x"
+              [style.top.%]="marker.y"
+              [attr.aria-label]="marker.id + ' - ' + marker.label"
+              [title]="marker.id + ' - ' + marker.label"
+            >
+              <span>{{ marker.id }}</span>
+            </button>
+          }
+        </div>
+      </article>
+    }
+  </div>
+
+  <ul class="legend">
+    @for (entry of legend; track entry.key) {
+      <li>
+        <span class="swatch" [style.background]="entry.key === 'green' ? '#22c55e' : entry.key === 'yellow' ? '#facc15' : entry.key === 'orange' ? '#fb923c' : entry.key === 'red' ? '#ef4444' : '#64748b'"></span>
+        <span>{{ entry.label }}</span>
+      </li>
+    }
+  </ul>
+</section>

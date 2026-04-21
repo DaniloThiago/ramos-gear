@@ -189,6 +189,7 @@ export class WizardComponent {
       itemCursor: this.step(),
       items: this.items(),
       decision: snapshot?.decision ?? 'Aprovado',
+      generalNotes: snapshot?.generalNotes ?? '',
     };
 
     if (!current) {

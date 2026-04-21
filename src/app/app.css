@@ -6,8 +6,8 @@
 .app-shell {
   min-height: 100dvh;
   background:
-    radial-gradient(circle at top, rgba(20, 184, 166, 0.12), transparent 34%),
-    linear-gradient(180deg, #06101a 0%, #09141f 100%);
+    radial-gradient(circle at top, rgba(225, 29, 46, 0.14), transparent 34%),
+    linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
 }
 
 .app-bar {
@@ -15,26 +15,38 @@
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  color: #dffaf5;
+  color: var(--rg-text);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .brand-mark {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #5eead4, #0f766e);
-  box-shadow: 0 0 18px rgba(94, 234, 212, 0.45);
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.45)),
+    linear-gradient(135deg, #ff4b52, #7f0f17);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 18px rgba(225, 29, 46, 0.45);
+  position: relative;
+}
+
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.56));
 }
 
 .pill {
   margin-left: auto;
   border-radius: 999px;
   padding: 6px 10px;
-  background: rgba(148, 163, 184, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  color: #9fb0c1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #d4d4d4;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;

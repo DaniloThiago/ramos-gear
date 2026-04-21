@@ -56,6 +56,10 @@ export class InspectionService {
     return this.draftSignal();
   }
 
+  loadDraft(): AppDraft | null {
+    return this.draftSignal();
+  }
+
   hasDraft(): boolean {
     return this.draftSignal() !== null;
   }

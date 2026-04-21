@@ -17,7 +17,7 @@ export const defaultBranding: CompanyBranding = {
   companyId: 'demo-company',
   companyName: 'App Ramos Gear',
   logoUrl: '',
-  accentColor: '#0f766e',
+  accentColor: '#e11d2e',
 };
 
 export const defaultUsers: User[] = [

@@ -1,23 +1,109 @@
 <main class="page-shell">
   <section class="panel">
-    <p class="eyebrow">Resumo</p>
-    <h1>Etapa 5 concluída</h1>
-    <p class="subtitle">
-      O fluxo de fotos e classificações está pronto para seguir para o laudo e o diagrama na próxima etapa.
-    </p>
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Resumo / diagrama</p>
+        <h1>Etapa 6 - revisão final</h1>
+        <p class="subtitle">
+          Confira as fotos, o diagrama do veículo e selecione a decisão final antes de gerar o laudo.
+        </p>
+      </div>
 
-    @if (inspectionService.draft(); as draft) {
-      <div class="draft-card">
-        <strong>{{ draft.customer.name }}</strong>
-        <span>{{ draft.vehicle.brand }} {{ draft.vehicle.model }} {{ draft.vehicle.year }}</span>
-        <span>Item atual: {{ draft.currentStep + 1 }}</span>
+      <a class="ghost" routerLink="/inspection/wizard">Voltar ao wizard</a>
+    </div>
+
+    @if (draft(); as currentDraft) {
+      <div class="summary-grid">
+        <section class="main-column">
+          <app-vehicle-diagram [items]="items()" />
+
+          <section class="items-card">
+            <div class="section-head">
+              <h2>Itens vistoriados</h2>
+              <span>{{ items().length }} itens</span>
+            </div>
+
+            <div class="items-list">
+              @for (item of items(); track item.itemId) {
+                <article class="item-row">
+                  <div class="thumb">
+                    @if (item.photo) {
+                      <img [src]="item.photo" alt="Foto de {{ item.title }}" />
+                    } @else {
+                      <div class="thumb-empty">Sem foto</div>
+                    }
+                  </div>
+
+                  <div class="item-body">
+                    <div class="item-head">
+                      <h3>{{ item.title }}</h3>
+                      <span class="badge badge--{{ itemTone(item) }}">{{ itemClassification(item) }}</span>
+                    </div>
+                    <p>{{ item.instruction }}</p>
+                    @if (item.notes) {
+                      <small>{{ item.notes }}</small>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        </section>
+
+        <aside class="side-column">
+          <section class="draft-card">
+            <span class="label">Cliente</span>
+            <strong>{{ currentDraft.customer.name }}</strong>
+            <p>{{ currentDraft.customer.phone }}</p>
+            @if (currentDraft.customer.email) {
+              <p>{{ currentDraft.customer.email }}</p>
+            }
+          </section>
+
+          <section class="draft-card">
+            <span class="label">Veículo</span>
+            <strong>{{ currentDraft.vehicle.brand }} {{ currentDraft.vehicle.model }}</strong>
+            <p>{{ currentDraft.vehicle.year }}</p>
+            <p>Placa: {{ currentDraft.vehicle.plate }}</p>
+          </section>
+
+          <section class="decision-card">
+            <div class="section-head">
+              <h2>Decisão final</h2>
+              <span>Sugerida: {{ suggestedDecision() }}</span>
+            </div>
+
+            <div class="decision-list">
+              @for (decision of decisions; track decision) {
+                <button
+                  type="button"
+                  class="decision-button"
+                  [class.decision-button--selected]="selectedDecision() === decision"
+                  [class.decision-button--suggested]="suggestedDecision() === decision"
+                  (click)="selectDecision(decision)"
+                >
+                  <span>{{ decision }}</span>
+                  @if (suggestedDecision() === decision) {
+                    <small>Sugerido</small>
+                  }
+                </button>
+              }
+            </div>
+
+            <label class="notes">
+              <span>Observações gerais da vistoria</span>
+              <textarea
+                rows="5"
+                [value]="generalNotes()"
+                (input)="updateGeneralNotes($event)"
+                placeholder="Observações opcionais para o laudo"
+              ></textarea>
+            </label>
+
+            <button class="primary" type="button" (click)="generateReport()">Gerar Laudo PDF</button>
+          </section>
+        </aside>
       </div>
     }
-
-    <div class="actions">
-      <a class="secondary" routerLink="/inspection/start">Voltar ao início</a>
-      <a class="primary" routerLink="/dashboard">Ir ao dashboard</a>
-    </div>
   </section>
 </main>
-

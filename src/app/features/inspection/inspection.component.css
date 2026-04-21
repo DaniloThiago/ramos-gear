@@ -9,8 +9,8 @@
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at top, rgba(94, 234, 212, 0.16), transparent 36%),
-    linear-gradient(160deg, #06101a 0%, #0b1622 45%, #112536 100%);
+    radial-gradient(circle at top, rgba(225, 29, 46, 0.16), transparent 36%),
+    linear-gradient(160deg, #050505 0%, #0f0f0f 45%, #181818 100%);
   color: #e5eef7;
 }
 
@@ -24,7 +24,7 @@
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #5eead4;
+  color: #ff7b80;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 12px;
@@ -50,4 +50,3 @@ h1 {
   border: 1px solid rgba(148, 163, 184, 0.18);
   text-decoration: none;
 }
-

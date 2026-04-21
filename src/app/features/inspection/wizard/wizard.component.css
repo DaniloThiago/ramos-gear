@@ -9,8 +9,8 @@
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at top, rgba(20, 184, 166, 0.18), transparent 34%),
-    linear-gradient(160deg, #06101a 0%, #0b1622 45%, #112536 100%);
+    radial-gradient(circle at top, rgba(225, 29, 46, 0.18), transparent 34%),
+    linear-gradient(160deg, #050505 0%, #0f0f0f 45%, #181818 100%);
   color: #e5eef7;
 }
 
@@ -33,7 +33,7 @@
 
 .eyebrow {
   margin: 0 0 10px;
-  color: #5eead4;
+  color: #ff7b80;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 12px;
@@ -85,7 +85,7 @@ h1 {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(135deg, #5eead4, #0f766e);
+  background: linear-gradient(135deg, #ff4b52, #e11d2e);
   transition: width 0.25s ease;
 }
 
@@ -161,4 +161,3 @@ h1 {
     flex-direction: column;
   }
 }
-

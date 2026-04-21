@@ -9,8 +9,8 @@
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at top, rgba(20, 184, 166, 0.2), transparent 34%),
-    linear-gradient(160deg, #06101a 0%, #0b1622 45%, #112536 100%);
+    radial-gradient(circle at top, rgba(225, 29, 46, 0.2), transparent 34%),
+    linear-gradient(160deg, #050505 0%, #0f0f0f 45%, #181818 100%);
   color: #e5eef7;
 }
 
@@ -34,7 +34,7 @@
 
 .eyebrow {
   margin: 0 0 10px;
-  color: #5eead4;
+  color: #ff7b80;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 12px;
@@ -127,8 +127,8 @@ input::placeholder {
 }
 
 input:focus {
-  border-color: rgba(94, 234, 212, 0.45);
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.16);
+  border-color: rgba(225, 29, 46, 0.52);
+  box-shadow: 0 0 0 4px rgba(225, 29, 46, 0.16);
 }
 
 small {
@@ -163,8 +163,8 @@ small {
 }
 
 .primary {
-  background: linear-gradient(135deg, #5eead4, #0f766e);
-  color: #04111a;
+  background: linear-gradient(135deg, #ff4b52, #e11d2e);
+  color: #fff;
 }
 
 .secondary {
@@ -202,9 +202,9 @@ small {
   display: inline-flex;
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(94, 234, 212, 0.12);
-  color: #5eead4;
-  border: 1px solid rgba(94, 234, 212, 0.18);
+  background: rgba(225, 29, 46, 0.14);
+  color: #ff9aa0;
+  border: 1px solid rgba(225, 29, 46, 0.2);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 12px;
@@ -251,4 +251,3 @@ small {
     grid-template-columns: 1fr;
   }
 }
-

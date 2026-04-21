@@ -9,7 +9,7 @@
 
 .eyebrow {
   margin: 0;
-  color: #5eead4;
+  color: #ff7b80;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 12px;
@@ -59,8 +59,8 @@ p {
 }
 
 .primary {
-  background: linear-gradient(135deg, #5eead4, #0f766e);
-  color: #04111a;
+  background: linear-gradient(135deg, #ff4b52, #e11d2e);
+  color: #fff;
 }
 
 .secondary {
@@ -68,4 +68,3 @@ p {
   color: #edf2f7;
   border: 1px solid rgba(148, 163, 184, 0.18);
 }
-

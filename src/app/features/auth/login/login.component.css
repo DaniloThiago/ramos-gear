@@ -9,8 +9,8 @@
   place-items: center;
   padding: 20px 24px 28px;
   background:
-    radial-gradient(circle at top, rgba(20, 184, 166, 0.18), transparent 34%),
-    linear-gradient(160deg, #06101a 0%, #0b1622 45%, #112536 100%);
+    radial-gradient(circle at top, rgba(225, 29, 46, 0.18), transparent 34%),
+    linear-gradient(160deg, #050505 0%, #0f0f0f 45%, #181818 100%);
   color: #e5eef7;
 }
 
@@ -29,7 +29,7 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 12px;
-  color: #5eead4;
+  color: #ff7b80;
 }
 
 h1 {
@@ -90,8 +90,8 @@ h1 {
 }
 
 .login-form input:focus {
-  border-color: rgba(94, 234, 212, 0.45);
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.16);
+  border-color: rgba(225, 29, 46, 0.52);
+  box-shadow: 0 0 0 4px rgba(225, 29, 46, 0.16);
 }
 
 .login-form small {
@@ -111,8 +111,8 @@ h1 {
   border: 0;
   border-radius: 16px;
   padding: 15px 18px;
-  background: linear-gradient(135deg, #5eead4, #0f766e);
-  color: #04111a;
+  background: linear-gradient(135deg, #ff4b52, #e11d2e);
+  color: #fff;
   font-weight: 800;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -140,9 +140,9 @@ h1 {
   width: fit-content;
   border-radius: 999px;
   padding: 8px 12px;
-  background: rgba(94, 234, 212, 0.12);
-  color: #5eead4;
-  border: 1px solid rgba(94, 234, 212, 0.18);
+  background: rgba(225, 29, 46, 0.14);
+  color: #ff9aa0;
+  border: 1px solid rgba(225, 29, 46, 0.2);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -172,7 +172,7 @@ h1 {
 
 .credential span {
   display: block;
-  color: #9eeadf;
+  color: #ff9aa0;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -215,4 +215,3 @@ h1 {
     border-radius: 24px;
   }
 }
-
