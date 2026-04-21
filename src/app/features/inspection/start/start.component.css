@@ -103,8 +103,10 @@ h1 {
 }
 
 label {
+  position: relative;
   display: grid;
   gap: 8px;
+  padding-bottom: 24px;
 }
 
 label span {
@@ -112,32 +114,66 @@ label span {
   font-size: 14px;
 }
 
-input {
+input,
+select {
   width: 100%;
+  box-sizing: border-box;
+  height: 52px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 16px;
-  padding: 14px 16px;
+  padding: 0 16px;
   background: rgba(2, 6, 23, 0.72);
   color: #f8fbff;
   outline: none;
+  font-size: 16px;
+  line-height: 1.2;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
 }
 
 input::placeholder {
   color: #718198;
 }
 
-input:focus {
+select {
+  color: #f8fbff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:required:invalid {
+  color: #718198;
+}
+
+input:focus,
+select:focus {
   border-color: rgba(225, 29, 46, 0.52);
   box-shadow: 0 0 0 4px rgba(225, 29, 46, 0.16);
 }
 
 small {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   color: #fca5a5;
+  line-height: 1.2;
+  min-height: 16px;
+  pointer-events: none;
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -248,6 +284,10 @@ small {
   }
 
   .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 }

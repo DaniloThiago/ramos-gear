@@ -67,20 +67,24 @@
             <div class="draft-meta">
               <strong>{{ currentDraft.vehicle.brand }}</strong>
               <p>{{ currentDraft.vehicle.model }}</p>
+              <p>Placa: {{ currentDraft.vehicle.plate }}</p>
+              <p>Renavam: {{ currentDraft.vehicle.renavam }}</p>
+              <p>Quilometragem: {{ currentDraft.vehicle.mileage }}</p>
               <p>Tipo: {{ currentDraft.vehicle.vehicleType }}</p>
+              <p>Remarcado: {{ currentDraft.vehicle.remarcado }}</p>
               <p>Espécie: {{ currentDraft.vehicle.species }}</p>
               <p>Fabricação: {{ currentDraft.vehicle.manufacturingYear }}</p>
               <p>Modelo: {{ currentDraft.vehicle.modelYear }}</p>
               <p>Combustível: {{ currentDraft.vehicle.fuel }}</p>
               <p>Cor: {{ currentDraft.vehicle.color }}</p>
-              <p>Motor: {{ currentDraft.vehicle.motorNumber }}</p>
-              <p>Chassi: {{ currentDraft.vehicle.chassisNumber }}</p>
+              <p>Jurisdição: {{ currentDraft.vehicle.cityUfJurisdiction }}</p>
+              <p>Motor veículo: {{ currentDraft.vehicle.motorNumber }}</p>
+              <p>Motor documento: {{ currentDraft.vehicle.documentMotorNumber }}</p>
+              <p>Chassi veículo: {{ currentDraft.vehicle.chassisNumber }}</p>
+              <p>Chassi documento: {{ currentDraft.vehicle.documentChassisNumber }}</p>
               <p>Passageiros: {{ currentDraft.vehicle.passengerCapacity }}</p>
               <p>Potência: {{ currentDraft.vehicle.enginePower }}</p>
-              <p>Cilindradas: {{ currentDraft.vehicle.displacement }}</p>
-              <p>CMT: {{ currentDraft.vehicle.cmt }}</p>
-              <p>PBT: {{ currentDraft.vehicle.pbt }}</p>
-              <p>Placa: {{ currentDraft.vehicle.plate }}</p>
+              <p>Câmbio: {{ currentDraft.vehicle.transmissionType }}</p>
             </div>
           </section>
 

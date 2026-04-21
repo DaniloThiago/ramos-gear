@@ -1,20 +1,147 @@
 <main class="page-shell">
   <section class="panel">
-    <p class="eyebrow">Report</p>
-    <h1>Próxima etapa pronta</h1>
-    <p class="subtitle">
-      A decisão final e os dados do resumo já podem ser levados para a geração do laudo em PDF na Etapa 7.
-    </p>
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Etapa 7 / PDF</p>
+        <h1>Geração do laudo cautelar</h1>
+        <p class="subtitle">
+          Gere, baixe, compartilhe ou envie o laudo final em PDF com os dados coletados na vistoria.
+        </p>
+      </div>
 
-    <div class="card">
-      <strong>Fluxo recebido</strong>
-      <span>Laudo em preparação</span>
+      <div class="topbar-actions">
+        <a class="ghost" routerLink="/inspection/summary">Voltar ao resumo</a>
+        <a class="ghost" routerLink="/dashboard">Ir ao dashboard</a>
+      </div>
     </div>
 
-    <div class="actions">
-      <a class="secondary" routerLink="/inspection/summary">Voltar ao resumo</a>
-      <a class="primary" routerLink="/dashboard">Ir ao dashboard</a>
-    </div>
+    @if (draft(); as currentDraft) {
+      <div class="hero-grid">
+        <div class="cta-card">
+          <span class="badge">Laudo pronto para exportação</span>
+          <strong>{{ vehicleLabel(currentDraft) }}</strong>
+          <p>
+            Cliente: <span>{{ currentDraft.customer.name }}</span>
+          </p>
+          <p>
+            Decisão: <span>{{ decisionLabel(selectedDecision()) }}</span>
+          </p>
+          <p class="status" [class.status--error]="status() === 'error'">
+            {{ feedback() || 'O template do laudo já está preparado no DOM oculto.' }}
+          </p>
+        </div>
+
+        <div class="action-card">
+          <button class="primary" type="button" (click)="generatePdf()">Gerar PDF</button>
+          <button class="secondary" type="button" (click)="downloadPdf()">Baixar PDF</button>
+          <button class="secondary" type="button" (click)="sharePdf()">Compartilhar PDF</button>
+          <button class="secondary" type="button" (click)="emailPdf()">Enviar por e-mail</button>
+        </div>
+      </div>
+    }
+
+    <section class="info-grid">
+      <article class="info-card">
+        <span class="label">Fluxo recebido</span>
+        <strong>Inspeção em resumo finalizada</strong>
+        <p>Os dados da vistoria já podem ser exportados em PDF e também salvos como inspeção concluída.</p>
+      </article>
+
+      <article class="info-card">
+        <span class="label">Status</span>
+        <strong>{{ statusLabel() }}</strong>
+        <p>O arquivo é montado client-side com `html2canvas` e `jsPDF`.</p>
+      </article>
+    </section>
   </section>
-</main>
 
+  @if (draft(); as currentDraft) {
+    <section #reportTemplate id="report-template" class="report-template" aria-hidden="true">
+      <header class="report-header" data-pdf-header>
+        <div class="brand-block">
+          <img [src]="logoSrc" alt="Logo da empresa" />
+          <div>
+            <p>Ramos Gear</p>
+            <h2>Perícia veicular</h2>
+          </div>
+        </div>
+
+        <div class="report-meta">
+          <span>Data: {{ reportDate() }}</span>
+          <span>Vistoriador: {{ currentDraft.inspectorEmail }}</span>
+        </div>
+      </header>
+
+      <section class="report-section" data-pdf-block>
+        <h3>Dados do Cliente</h3>
+        <div class="kv-grid">
+          <p><span>Nome:</span> {{ currentDraft.customer.name }}</p>
+          <p><span>Celular:</span> {{ currentDraft.customer.phone }}</p>
+          <p><span>E-mail:</span> {{ currentDraft.customer.email || '-' }}</p>
+        </div>
+      </section>
+
+      <section class="report-section" data-pdf-block>
+        <h3>Dados do Veículo</h3>
+        <div class="kv-grid kv-grid--vehicle">
+          <p><span>Placa:</span> {{ currentDraft.vehicle.plate }}</p>
+          <p><span>Renavam:</span> {{ currentDraft.vehicle.renavam }}</p>
+          <p><span>Quilometragem:</span> {{ currentDraft.vehicle.mileage }}</p>
+          <p><span>Remarcado:</span> {{ currentDraft.vehicle.remarcado }}</p>
+          <p><span>Marca:</span> {{ currentDraft.vehicle.brand }}</p>
+          <p><span>Modelo:</span> {{ currentDraft.vehicle.model }}</p>
+          <p><span>Tipo de veículo:</span> {{ currentDraft.vehicle.vehicleType }}</p>
+          <p><span>Espécie:</span> {{ currentDraft.vehicle.species }}</p>
+          <p><span>Ano fabricação:</span> {{ currentDraft.vehicle.manufacturingYear }}</p>
+          <p><span>Ano modelo:</span> {{ currentDraft.vehicle.modelYear }}</p>
+          <p><span>Combustível:</span> {{ currentDraft.vehicle.fuel }}</p>
+          <p><span>Cor:</span> {{ currentDraft.vehicle.color }}</p>
+          <p><span>Cidade / UF Jurisdição:</span> {{ currentDraft.vehicle.cityUfJurisdiction }}</p>
+          <p><span>Motor no veículo:</span> {{ currentDraft.vehicle.motorNumber }}</p>
+          <p><span>Motor no documento:</span> {{ currentDraft.vehicle.documentMotorNumber }}</p>
+          <p><span>Chassi no veículo:</span> {{ currentDraft.vehicle.chassisNumber }}</p>
+          <p><span>Chassi no documento:</span> {{ currentDraft.vehicle.documentChassisNumber }}</p>
+          <p><span>Capacidade de passageiros:</span> {{ currentDraft.vehicle.passengerCapacity }}</p>
+          <p><span>Potência do motor:</span> {{ currentDraft.vehicle.enginePower }}</p>
+          <p><span>Tipo de câmbio:</span> {{ currentDraft.vehicle.transmissionType }}</p>
+        </div>
+      </section>
+
+      <div class="section-title-block" data-pdf-block>
+        <h3>Fotos e Classificações</h3>
+      </div>
+
+      @for (item of items(); track item.itemId) {
+        <article class="item-card" data-pdf-block>
+          <div class="thumb">
+            @if (item.photo) {
+              <div class="thumb-img" [style.backgroundImage]="'url(' + item.photo + ')'"></div>
+            } @else {
+              <div class="thumb-empty">Sem foto</div>
+            }
+          </div>
+
+          <div class="item-copy">
+            <strong>{{ item.title }}</strong>
+            <span class="badge badge--{{ itemTone(item) }}">{{ itemClassification(item) }}</span>
+            <p>{{ item.instruction }}</p>
+            @if (item.notes) {
+              <small>{{ item.notes }}</small>
+            }
+          </div>
+        </article>
+      }
+
+      <div class="section-title-block" data-pdf-block>
+        <h3>Diagrama Visual</h3>
+      </div>
+      <app-vehicle-diagram [items]="items()" />
+
+      <section class="report-section report-section--decision" data-pdf-block>
+        <h3>Resultado Final</h3>
+        <strong>{{ decisionLabel(selectedDecision()) }}</strong>
+        <p>{{ currentDraft.generalNotes || 'Sem observações gerais.' }}</p>
+      </section>
+    </section>
+  }
+</main>

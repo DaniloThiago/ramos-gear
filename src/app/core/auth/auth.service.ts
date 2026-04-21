@@ -46,7 +46,12 @@ export class AuthService {
   getCompanyBranding(companyId: string): CompanyBranding {
     const branding = this.readJson<CompanyBranding>(BRANDING_KEY);
     if (branding && branding.companyId === companyId) {
-      return branding;
+      const normalized = this.normalizeBranding(branding);
+      if (normalized.companyName !== branding.companyName) {
+        this.writeJson(BRANDING_KEY, normalized);
+      }
+
+      return normalized;
     }
 
     return defaultBranding;
@@ -60,6 +65,18 @@ export class AuthService {
     if (!this.readJson<CompanyBranding>(BRANDING_KEY)) {
       this.writeJson(BRANDING_KEY, defaultBranding);
     }
+  }
+
+  private normalizeBranding(branding: CompanyBranding): CompanyBranding {
+    const companyName =
+      branding.companyName.trim().toLowerCase() === 'app ramos gear'
+        ? 'Ramos Gear'
+        : branding.companyName;
+
+    return {
+      ...branding,
+      companyName,
+    };
   }
 
   private restoreSession(): void {
@@ -110,4 +127,3 @@ export class AuthService {
     }
   }
 }
-

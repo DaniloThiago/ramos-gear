@@ -182,12 +182,18 @@ export class WizardComponent {
     const snapshot = this.inspectionService.draft();
     const draft: AppDraft = {
       inspectorEmail: snapshot?.inspectorEmail ?? '',
+      inspectionId: snapshot?.inspectionId,
       customer: snapshot?.customer ?? { name: '', phone: '', email: '' },
       vehicle:
         snapshot?.vehicle ?? {
           plate: '',
+          renavam: '',
+          mileage: '',
           motorNumber: '',
+          documentMotorNumber: '',
           chassisNumber: '',
+          documentChassisNumber: '',
+          remarcado: 'Não',
           vehicleType: '',
           brand: '',
           model: '',
@@ -196,11 +202,10 @@ export class WizardComponent {
           species: '',
           fuel: '',
           color: '',
+          cityUfJurisdiction: '',
           passengerCapacity: '',
           enginePower: '',
-          displacement: '',
-          cmt: '',
-          pbt: '',
+          transmissionType: '',
         },
       checklistId: snapshot?.checklistId ?? 'padrao',
       currentStep: this.step(),

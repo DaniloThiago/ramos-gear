@@ -1,9 +1,14 @@
 <main class="page-shell">
   <section class="panel">
     <div class="topbar">
-      <div>
-        <p class="eyebrow">Dashboard / ramos-red</p>
-        <h1>{{ company().companyName }}</h1>
+      <div class="brand-stack">
+        <div class="brand-lockup">
+          <img src="/assets/logo.png" alt="Logo Ramos Gear" />
+          <div>
+            <p class="eyebrow">Dashboard / Ramos Gear</p>
+            <h1>{{ company().companyName }}</h1>
+          </div>
+        </div>
         <p class="subtitle">Olá, {{ auth.user()?.name }}. Aqui você acompanha a operação do dia.</p>
       </div>
 
@@ -66,6 +71,16 @@
               <div class="inspection-card__footer">
                 <span>{{ inspection.customer.phone }}</span>
                 <span>{{ inspection.customer.email }}</span>
+              </div>
+
+              <div class="inspection-card__actions">
+                <a
+                  class="inspection-action"
+                  [routerLink]="['/report']"
+                  [queryParams]="{ inspectionId: inspection.id }"
+                >
+                  Regerar PDF
+                </a>
               </div>
             </article>
           }

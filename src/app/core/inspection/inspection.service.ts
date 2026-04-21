@@ -37,6 +37,10 @@ export class InspectionService {
     this.persist(next);
   }
 
+  getInspectionById(id: string): InspectionRecord | null {
+    return this.inspectionsSignal().find((item) => item.id === id) ?? null;
+  }
+
   refresh(): void {
     this.inspectionsSignal.set(this.readInspections());
     this.draftSignal.set(this.readDraft());

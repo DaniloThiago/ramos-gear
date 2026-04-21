@@ -1,4 +1,4 @@
-# App Ramos Gear — Arquitetura Técnica
+﻿# Ramos Gear — Arquitetura Técnica
 
 > Documento de referência para desenvolvimento do MVP de vistoria cautelar veicular.
 
@@ -24,7 +24,7 @@
 
 ## 1. Visão Geral
 
-**App Ramos Gear** é uma PWA (Progressive Web App) para realização de **vistorias cautelares veiculares** em campo. Permite que vistoriadores fotografem, classifiquem e gerem laudos em PDF sem necessidade de treinamento avançado.
+**Ramos Gear** é uma PWA (Progressive Web App) para realização de **vistorias cautelares veiculares** em campo. Permite que vistoriadores fotografem, classifiquem e gerem laudos em PDF sem necessidade de treinamento avançado.
 
 ### Público-alvo
 - Vistoriadores em campo (uso principal via smartphone)
@@ -1152,29 +1152,29 @@ compressImage(file: File, maxWidth = 1280, quality = 0.7): Promise<string> {
 
 ---
 
-#### Etapa 7 — Geração e download do PDF ⏳ não iniciado
+#### Etapa 7 — Geração e download do PDF ✅ concluída
 
 **Checklist:**
-- [ ] Instalar dependências: `npm install jspdf html2canvas`
-- [ ] Criar `src/app/core/pdf/pdf.service.ts` com `generateFromElement(id, filename): Promise<Blob>`
-- [ ] `PdfService`: usar `html2canvas(el, { scale: 2, useCORS: true })` para capturar o template
-- [ ] `PdfService`: gerar PDF A4 portrait via `jsPDF` e retornar `Blob`
-- [ ] `PdfService`: implementar `download(blob, filename)` via `URL.createObjectURL`
-- [ ] `PdfService`: implementar `share(blob, filename)` via `navigator.share({ files })` com fallback para download
-- [ ] Criar `src/app/features/report/report.component.ts` lendo draft via `InspectionService.loadDraft()`
-- [ ] Criar `src/app/features/report/report.component.html` com template do laudo (posicionado fora da viewport: `position:absolute; left:-9999px`)
-- [ ] Template do laudo: cabeçalho com logo da empresa + título + data/hora de emissão
-- [ ] Template do laudo: seção de dados do cliente (nome, celular, e-mail)
-- [ ] Template do laudo: seção de dados do veículo (marca, modelo, ano, placa)
-- [ ] Template do laudo: grade de fotos com miniatura + título + classificação de cada item
-- [ ] Template do laudo: `VehicleDiagramComponent` inline (SVG exportável)
-- [ ] Template do laudo: resultado final em destaque (cor conforme decisão)
-- [ ] Template do laudo: nome do vistoriador + nome da empresa no rodapé
-- [ ] Ao gerar: criar `InspectionRecord` e salvar no localStorage via `InspectionService.save()`
-- [ ] Após salvar: limpar draft via `InspectionService.clearDraft()`
-- [ ] Exibir botões "Baixar PDF" e "Compartilhar" (ocultar "Compartilhar" se `navigator.share` não suportado)
-- [ ] Botão "Voltar ao início" navega para `/dashboard`
-- [ ] Registrar rota `/report` em `app.routes.ts` com `AuthGuard`
+- [x] Instalar dependências: `npm install jspdf html2canvas`
+- [x] Criar `src/app/core/pdf/pdf.service.ts` com `generateFromElement(id, filename): Promise<Blob>`
+- [x] `PdfService`: usar `html2canvas(el, { scale: 2, useCORS: true })` para capturar o template
+- [x] `PdfService`: gerar PDF A4 portrait via `jsPDF` e retornar `Blob`
+- [x] `PdfService`: implementar `download(blob, filename)` via `URL.createObjectURL`
+- [x] `PdfService`: implementar `share(blob, filename)` via `navigator.share({ files })` com fallback para download
+- [x] Criar `src/app/features/report/report.component.ts` lendo draft via `InspectionService.loadDraft()`
+- [x] Criar `src/app/features/report/report.component.html` com template do laudo (posicionado fora da viewport: `position:absolute; left:-9999px`)
+- [x] Template do laudo: cabeçalho com logo da empresa + título + data/hora de emissão
+- [x] Template do laudo: seção de dados do cliente (nome, celular, e-mail)
+- [x] Template do laudo: seção de dados do veículo (marca, modelo, ano, placa)
+- [x] Template do laudo: grade de fotos com miniatura + título + classificação de cada item
+- [x] Template do laudo: `VehicleDiagramComponent` inline (SVG exportável)
+- [x] Template do laudo: resultado final em destaque (cor conforme decisão)
+- [x] Template do laudo: nome do vistoriador + nome da empresa no rodapé
+- [x] Ao gerar: criar `InspectionRecord` e salvar no localStorage via `InspectionService.save()`
+- [x] Após salvar: limpar draft via `InspectionService.clearDraft()`
+- [x] Exibir botões "Baixar PDF" e "Compartilhar" (ocultar "Compartilhar" se `navigator.share` não suportado)
+- [x] Botão "Voltar ao início" navega para `/dashboard`
+- [x] Registrar rota `/report` em `app.routes.ts` com `AuthGuard`
 
 **Entregável:** PDF gerado localmente, baixável e compartilhável, vistoria salva no histórico.
 
@@ -1267,4 +1267,6 @@ compressImage(file: File, maxWidth = 1280, quality = 0.7): Promise<string> {
 
 ---
 
-*Documento gerado em 20/04/2026 — App Ramos Gear v0.1*
+*Documento gerado em 20/04/2026 — Ramos Gear v0.1*
+
+

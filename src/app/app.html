@@ -1,8 +1,10 @@
 <div class="app-shell">
   <header class="app-bar">
-    <span class="brand-mark"></span>
-    <span>{{ title() }}</span>
-    <span class="pill">ramos-red</span>
+    <img class="brand-logo" [src]="branding.logoUrl" alt="Logo Ramos Gear" />
+    <div class="brand-copy">
+      <span class="brand-name">{{ title() }}</span>
+      <span class="brand-tag">Perícia veicular</span>
+    </div>
   </header>
   <router-outlet />
 </div>

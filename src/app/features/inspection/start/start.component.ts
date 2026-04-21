@@ -45,6 +45,13 @@ function plateValidator(): ValidatorFn {
   };
 }
 
+function renavamValidator(): ValidatorFn {
+  return (control): ValidationErrors | null => {
+    const value = String(control.value ?? '').replace(/\D/g, '');
+    return /^\d{9,11}$/.test(value) ? null : { renavam: true };
+  };
+}
+
 @Component({
   selector: 'app-start',
   standalone: true,
@@ -60,6 +67,9 @@ export class StartComponent {
 
   readonly yearMax = new Date().getFullYear() + 1;
   readonly yearMin = 1950;
+  readonly fuelOptions = ['FLEX/GNV', 'Gasolina', 'Álcool', 'Diesel', 'Elétrico', 'Híbrido'];
+  readonly transmissionOptions = ['Manual', 'Automático', 'Automatizado', 'CVT', 'Semi-automático'];
+  readonly remarcadoOptions = ['Sim', 'Não'];
   readonly hasDraft = computed(() => this.inspectionService.draft() !== null);
   readonly draftPreview = computed(() => this.inspectionService.draft());
 
@@ -68,8 +78,13 @@ export class StartComponent {
     customerPhone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)]],
     customerEmail: ['', [optionalEmailValidator()]],
     plate: ['', [Validators.required, plateValidator()]],
+    renavam: ['', [Validators.required, renavamValidator()]],
+    mileage: ['', [Validators.required]],
     motorNumber: ['', [Validators.required]],
+    documentMotorNumber: ['', [Validators.required]],
     chassisNumber: ['', [Validators.required]],
+    documentChassisNumber: ['', [Validators.required]],
+    remarcado: ['Não', [Validators.required]],
     vehicleType: ['', [Validators.required]],
     brand: ['', [Validators.required]],
     model: ['', [Validators.required]],
@@ -81,11 +96,10 @@ export class StartComponent {
     species: ['', [Validators.required]],
     fuel: ['', [Validators.required]],
     color: ['', [Validators.required]],
+    cityUfJurisdiction: ['', [Validators.required]],
     passengerCapacity: ['', [Validators.required]],
     enginePower: ['', [Validators.required]],
-    displacement: ['', [Validators.required]],
-    cmt: ['', [Validators.required]],
-    pbt: ['', [Validators.required]],
+    transmissionType: ['', [Validators.required]],
   });
 
   get customerName() {
@@ -104,12 +118,32 @@ export class StartComponent {
     return this.form.controls.plate;
   }
 
+  get renavam() {
+    return this.form.controls.renavam;
+  }
+
+  get mileage() {
+    return this.form.controls.mileage;
+  }
+
   get motorNumber() {
     return this.form.controls.motorNumber;
   }
 
+  get documentMotorNumber() {
+    return this.form.controls.documentMotorNumber;
+  }
+
   get chassisNumber() {
     return this.form.controls.chassisNumber;
+  }
+
+  get documentChassisNumber() {
+    return this.form.controls.documentChassisNumber;
+  }
+
+  get remarcado() {
+    return this.form.controls.remarcado;
   }
 
   get vehicleType() {
@@ -144,6 +178,10 @@ export class StartComponent {
     return this.form.controls.color;
   }
 
+  get cityUfJurisdiction() {
+    return this.form.controls.cityUfJurisdiction;
+  }
+
   get passengerCapacity() {
     return this.form.controls.passengerCapacity;
   }
@@ -152,16 +190,8 @@ export class StartComponent {
     return this.form.controls.enginePower;
   }
 
-  get displacement() {
-    return this.form.controls.displacement;
-  }
-
-  get cmt() {
-    return this.form.controls.cmt;
-  }
-
-  get pbt() {
-    return this.form.controls.pbt;
+  get transmissionType() {
+    return this.form.controls.transmissionType;
   }
 
   onPhoneInput(event: Event): void {
@@ -204,8 +234,13 @@ export class StartComponent {
       },
       vehicle: {
         plate: this.plate.value.trim().toUpperCase(),
+        renavam: this.renavam.value.replace(/\D/g, ''),
+        mileage: this.mileage.value.trim(),
         motorNumber: this.motorNumber.value.trim(),
+        documentMotorNumber: this.documentMotorNumber.value.trim(),
         chassisNumber: this.chassisNumber.value.trim(),
+        documentChassisNumber: this.documentChassisNumber.value.trim(),
+        remarcado: this.remarcado.value,
         vehicleType: this.vehicleType.value.trim(),
         brand: this.brand.value.trim(),
         model: this.model.value.trim(),
@@ -214,11 +249,10 @@ export class StartComponent {
         species: this.species.value.trim(),
         fuel: this.fuel.value.trim(),
         color: this.color.value.trim(),
+        cityUfJurisdiction: this.cityUfJurisdiction.value.trim(),
         passengerCapacity: this.passengerCapacity.value.trim(),
         enginePower: this.enginePower.value.trim(),
-        displacement: this.displacement.value.trim(),
-        cmt: this.cmt.value.trim(),
-        pbt: this.pbt.value.trim(),
+        transmissionType: this.transmissionType.value.trim(),
       },
       checklistId: 'padrao',
       currentStep: 0,

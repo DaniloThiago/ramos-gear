@@ -23,8 +23,13 @@ export interface CompanyBranding {
 
 export interface VehicleInfo {
   plate: string;
+  renavam: string;
+  mileage: string;
   motorNumber: string;
+  documentMotorNumber: string;
   chassisNumber: string;
+  documentChassisNumber: string;
+  remarcado: string;
   vehicleType: string;
   brand: string;
   model: string;
@@ -33,11 +38,10 @@ export interface VehicleInfo {
   species: string;
   fuel: string;
   color: string;
+  cityUfJurisdiction: string;
   passengerCapacity: string;
   enginePower: string;
-  displacement: string;
-  cmt: string;
-  pbt: string;
+  transmissionType: string;
 }
 
 export interface CustomerInfo {
@@ -77,10 +81,13 @@ export interface InspectionRecord {
   decision: FinalDecision;
   companyId: string;
   items: InspectionItemResult[];
+  pdfUrl?: string;
+  generalNotes?: string;
 }
 
 export interface AppDraft {
   inspectorEmail: string;
+  inspectionId?: string;
   customer: CustomerInfo;
   vehicle: VehicleInfo;
   checklistId: string;

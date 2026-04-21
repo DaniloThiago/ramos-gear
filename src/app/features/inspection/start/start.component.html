@@ -5,7 +5,8 @@
         <p class="eyebrow">Etapa 4 / inicio da vistoria</p>
         <h1>Cadastro de cliente e veículo</h1>
         <p class="subtitle">
-          Preencha os dados iniciais para gerar um draft seguro, rápido e pronto para seguir ao wizard.
+          Preencha os dados iniciais para gerar um draft seguro, rápido e pronto para seguir ao
+          wizard.
         </p>
       </div>
 
@@ -23,14 +24,19 @@
           </p>
 
           <div class="draft-actions">
-            <button class="primary" type="button" (click)="continuePrevious()">Continuar anterior</button>
+            <button class="primary" type="button" (click)="continuePrevious()">
+              Continuar anterior
+            </button>
             <button class="secondary" type="button" (click)="startNew()">Iniciar nova</button>
           </div>
 
           @if (draftPreview(); as draft) {
             <div class="draft-preview">
               <strong>{{ draft.customer.name }}</strong>
-              <span>{{ draft.vehicle.brand }} {{ draft.vehicle.model }} {{ draft.vehicle.modelYear || draft.vehicle.manufacturingYear }}</span>
+              <span
+                >{{ draft.vehicle.brand }} {{ draft.vehicle.model }}
+                {{ draft.vehicle.modelYear || draft.vehicle.manufacturingYear }}</span
+              >
             </div>
           }
         </div>
@@ -49,8 +55,7 @@
           <input type="text" formControlName="customerName" placeholder="Nome completo" />
           @if (customerName.touched && customerName.errors?.['required']) {
             <small>Informe o nome do cliente.</small>
-          }
-          @if (customerName.touched && customerName.errors?.['minlength']) {
+          } @else if (customerName.touched && customerName.errors?.['minlength']) {
             <small>O nome deve ter ao menos 3 caracteres.</small>
           }
         </label>
@@ -67,8 +72,7 @@
           />
           @if (customerPhone.touched && customerPhone.errors?.['required']) {
             <small>Informe o celular.</small>
-          }
-          @if (customerPhone.touched && customerPhone.errors?.['pattern']) {
+          } @else if (customerPhone.touched && customerPhone.errors?.['pattern']) {
             <small>Use o formato (00) 00000-0000.</small>
           }
         </label>
@@ -88,22 +92,46 @@
           <span>Identificação da vistoria</span>
         </div>
 
-        <label>
-          <span>Placa</span>
-          <input
-            type="text"
-            formControlName="plate"
-            placeholder="ABC1D23 ou ABC-1234"
-            style="text-transform: uppercase"
-            (input)="onPlateInput($event)"
-          />
-          @if (plate.touched && plate.errors?.['required']) {
-            <small>Informe a placa.</small>
-          }
-          @if (plate.touched && plate.errors?.['plate']) {
-            <small>Use placa antiga ou Mercosul.</small>
-          }
-        </label>
+        <div class="grid-3">
+          <label>
+            <span>PLACA</span>
+            <input
+              type="text"
+              formControlName="plate"
+              placeholder="ABC1D23 ou ABC-1234"
+              style="text-transform: uppercase"
+              (input)="onPlateInput($event)"
+            />
+            @if (plate.touched && plate.errors?.['required']) {
+              <small>Informe a placa.</small>
+            } @else if (plate.touched && plate.errors?.['plate']) {
+              <small>Use placa antiga ou Mercosul.</small>
+            }
+          </label>
+
+          <label>
+            <span>RENAVAM</span>
+            <input
+              type="text"
+              formControlName="renavam"
+              placeholder="Somente números"
+              inputmode="numeric"
+            />
+            @if (renavam.touched && renavam.errors?.['required']) {
+              <small>Informe o RENAVAM.</small>
+            } @else if (renavam.touched && renavam.errors?.['renavam']) {
+              <small>Use de 9 a 11 números.</small>
+            }
+          </label>
+
+          <label>
+            <span>Quilometragem</span>
+            <input type="text" formControlName="mileage" placeholder="Ex.: 124580 km" />
+            @if (mileage.touched && mileage.errors?.['required']) {
+              <small>Informe a quilometragem.</small>
+            }
+          </label>
+        </div>
 
         <div class="grid-2">
           <label>
@@ -115,20 +143,140 @@
           </label>
 
           <label>
-            <span>Chassi no veículo</span>
-            <input type="text" formControlName="chassisNumber" placeholder="Número do chassi" />
-            @if (chassisNumber.touched && chassisNumber.errors?.['required']) {
-              <small>Informe o chassi no veículo.</small>
+            <span>Motor no documento</span>
+            <input
+              type="text"
+              formControlName="documentMotorNumber"
+              placeholder="Motor do documento"
+            />
+            @if (documentMotorNumber.touched && documentMotorNumber.errors?.['required']) {
+              <small>Informe o motor no documento.</small>
             }
           </label>
         </div>
 
         <div class="grid-2">
           <label>
-            <span>Tipo de veículo</span>
+            <span>Chassi no veículo</span>
+            <input type="text" formControlName="chassisNumber" placeholder="Número do chassi" />
+            @if (chassisNumber.touched && chassisNumber.errors?.['required']) {
+              <small>Informe o chassi no veículo.</small>
+            }
+          </label>
+
+          <label>
+            <span>Chassi no documento</span>
+            <input
+              type="text"
+              formControlName="documentChassisNumber"
+              placeholder="Chassi do documento"
+            />
+            @if (documentChassisNumber.touched && documentChassisNumber.errors?.['required']) {
+              <small>Informe o chassi no documento.</small>
+            }
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>Remarcado</span>
+            <select formControlName="remarcado" required>
+              @for (option of remarcadoOptions; track option) {
+                <option [value]="option">{{ option }}</option>
+              }
+            </select>
+            @if (remarcado.touched && remarcado.errors?.['required']) {
+              <small>Informe se o veículo é remarcado.</small>
+            }
+          </label>
+
+          <label>
+            <span>Tipo de Veículo</span>
             <input type="text" formControlName="vehicleType" placeholder="Automóvel" />
             @if (vehicleType.touched && vehicleType.errors?.['required']) {
               <small>Informe o tipo de veículo.</small>
+            }
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>MARCA</span>
+            <input type="text" formControlName="brand" placeholder="Toyota" />
+            @if (brand.touched && brand.errors?.['required']) {
+              <small>Informe a marca.</small>
+            }
+          </label>
+
+          <label>
+            <span>MODELO</span>
+            <input type="text" formControlName="model" placeholder="Corolla" />
+            @if (model.touched && model.errors?.['required']) {
+              <small>Informe o modelo.</small>
+            }
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>Ano Fabricação</span>
+            <input
+              type="number"
+              formControlName="manufacturingYear"
+              [min]="yearMin"
+              [max]="yearMax"
+            />
+            @if (manufacturingYear.touched && manufacturingYear.errors?.['required']) {
+              <small>Informe o ano de fabricação.</small>
+            } @else if (manufacturingYear.touched && manufacturingYear.errors?.['yearRange']) {
+              <small>Use um ano entre {{ yearMin }} e {{ yearMax }}.</small>
+            }
+          </label>
+
+          <label>
+            <span>Ano Modelo</span>
+            <input type="number" formControlName="modelYear" [min]="yearMin" [max]="yearMax" />
+            @if (modelYear.touched && modelYear.errors?.['required']) {
+              <small>Informe o ano modelo.</small>
+            } @else if (modelYear.touched && modelYear.errors?.['yearRange']) {
+              <small>Use um ano entre {{ yearMin }} e {{ yearMax }}.</small>
+            }
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>Combustível</span>
+            <select formControlName="fuel" required>
+              <option value="" disabled>Selecione</option>
+              @for (option of fuelOptions; track option) {
+                <option [value]="option">{{ option }}</option>
+              }
+            </select>
+            @if (fuel.touched && fuel.errors?.['required']) {
+              <small>Informe o combustível.</small>
+            }
+          </label>
+
+          <label>
+            <span>COR</span>
+            <input type="text" formControlName="color" placeholder="Prata" />
+            @if (color.touched && color.errors?.['required']) {
+              <small>Informe a cor.</small>
+            }
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>Cidade / UF Jurisdição</span>
+            <input
+              type="text"
+              formControlName="cityUfJurisdiction"
+              placeholder="Rio de Janeiro / RJ"
+            />
+            @if (cityUfJurisdiction.touched && cityUfJurisdiction.errors?.['required']) {
+              <small>Informe a cidade / UF de jurisdição.</small>
             }
           </label>
 
@@ -143,67 +291,7 @@
 
         <div class="grid-2">
           <label>
-            <span>Marca</span>
-            <input type="text" formControlName="brand" placeholder="Toyota" />
-            @if (brand.touched && brand.errors?.['required']) {
-              <small>Informe a marca.</small>
-            }
-          </label>
-
-          <label>
-            <span>Modelo</span>
-            <input type="text" formControlName="model" placeholder="Corolla" />
-            @if (model.touched && model.errors?.['required']) {
-              <small>Informe o modelo.</small>
-            }
-          </label>
-        </div>
-
-        <div class="grid-2">
-          <label>
-            <span>Ano fabricação</span>
-            <input type="number" formControlName="manufacturingYear" [min]="yearMin" [max]="yearMax" />
-            @if (manufacturingYear.touched && manufacturingYear.errors?.['required']) {
-              <small>Informe o ano de fabricação.</small>
-            }
-            @if (manufacturingYear.touched && manufacturingYear.errors?.['yearRange']) {
-              <small>Use um ano entre {{ yearMin }} e {{ yearMax }}.</small>
-            }
-          </label>
-
-          <label>
-            <span>Ano modelo</span>
-            <input type="number" formControlName="modelYear" [min]="yearMin" [max]="yearMax" />
-            @if (modelYear.touched && modelYear.errors?.['required']) {
-              <small>Informe o ano modelo.</small>
-            }
-            @if (modelYear.touched && modelYear.errors?.['yearRange']) {
-              <small>Use um ano entre {{ yearMin }} e {{ yearMax }}.</small>
-            }
-          </label>
-        </div>
-
-        <div class="grid-2">
-          <label>
-            <span>Combustível</span>
-            <input type="text" formControlName="fuel" placeholder="Flex" />
-            @if (fuel.touched && fuel.errors?.['required']) {
-              <small>Informe o combustível.</small>
-            }
-          </label>
-
-          <label>
-            <span>Cor</span>
-            <input type="text" formControlName="color" placeholder="Prata" />
-            @if (color.touched && color.errors?.['required']) {
-              <small>Informe a cor.</small>
-            }
-          </label>
-        </div>
-
-        <div class="grid-2">
-          <label>
-            <span>Capacidade de passageiros</span>
+            <span>Capacidade de Passageiros</span>
             <input type="text" formControlName="passengerCapacity" placeholder="5" />
             @if (passengerCapacity.touched && passengerCapacity.errors?.['required']) {
               <small>Informe a capacidade de passageiros.</small>
@@ -211,7 +299,7 @@
           </label>
 
           <label>
-            <span>Potência do motor</span>
+            <span>Potência do Motor</span>
             <input type="text" formControlName="enginePower" placeholder="120 cv" />
             @if (enginePower.touched && enginePower.errors?.['required']) {
               <small>Informe a potência do motor.</small>
@@ -221,29 +309,18 @@
 
         <div class="grid-2">
           <label>
-            <span>Cilindradas</span>
-            <input type="text" formControlName="displacement" placeholder="1.8" />
-            @if (displacement.touched && displacement.errors?.['required']) {
-              <small>Informe as cilindradas.</small>
-            }
-          </label>
-
-          <label>
-            <span>CMT (Capacidade máxima por tração)</span>
-            <input type="text" formControlName="cmt" placeholder="3500 kg" />
-            @if (cmt.touched && cmt.errors?.['required']) {
-              <small>Informe o CMT.</small>
+            <span>Tipo de Câmbio</span>
+            <select formControlName="transmissionType" required>
+              <option value="" disabled>Selecione</option>
+              @for (option of transmissionOptions; track option) {
+                <option [value]="option">{{ option }}</option>
+              }
+            </select>
+            @if (transmissionType.touched && transmissionType.errors?.['required']) {
+              <small>Informe o tipo de câmbio.</small>
             }
           </label>
         </div>
-
-        <label>
-          <span>PBT (Peso bruto total)</span>
-          <input type="text" formControlName="pbt" placeholder="7500 kg" />
-          @if (pbt.touched && pbt.errors?.['required']) {
-            <small>Informe o PBT.</small>
-          }
-        </label>
       </section>
 
       <div class="footer">

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { defaultBranding } from './app.data';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('App Ramos Gear');
+  protected readonly branding = defaultBranding;
+  protected readonly title = signal('Ramos Gear');
 }
-
