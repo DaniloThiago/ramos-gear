@@ -17,8 +17,8 @@ interface MarkerViewModel extends VehicleMarker {
 }
 
 const IMAGE_PATHS: Record<VehicleSide, string> = {
-  front: '/assets/vehicle-diagram/front.png',
-  back: '/assets/vehicle-diagram/back.png',
+  front: 'assets/vehicle-diagram/front.png',
+  back: 'assets/vehicle-diagram/back.png',
 };
 
 const VEHICLE_MARKERS: VehicleMarker[] = [
@@ -44,7 +44,7 @@ const SEVERITY_LABELS: Record<SeverityKey, string> = {
   green: 'Original',
   yellow: 'Repintura / Reparo',
   orange: 'Retrabalhada',
-  red: 'Avariada / Substituida',
+  red: 'Avariada / Substituída',
 };
 
 function normalizeText(value: string): string {

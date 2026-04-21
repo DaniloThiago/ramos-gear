@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh": "ng build --configuration production --base-href /ramos-gear/ --deploy-url /ramos-gear/",
+    "deploy:gh": "npm run build:gh",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

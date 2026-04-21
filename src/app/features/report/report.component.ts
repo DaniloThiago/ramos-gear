@@ -214,7 +214,7 @@ export class ReportComponent implements AfterViewInit, OnDestroy {
   }
 
   get logoSrc(): string {
-    return this.company().logoUrl || '/assets/logo.png';
+    return this.company().logoUrl || 'assets/logo.png';
   }
 
   private async buildPdf(): Promise<Blob> {

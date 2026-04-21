@@ -18,4 +18,4 @@ Recommended rule:
 - Keep both images with the same aspect ratio if possible.
 - If the artwork changes, only the percentage coordinates in the component need to be adjusted.
 
-Files placed here are served by Angular from `/assets/vehicle-diagram/`.
+Files placed here are served by Angular from `assets/vehicle-diagram/`.

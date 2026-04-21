@@ -16,7 +16,7 @@ export const storageKeys = {
 export const defaultBranding: CompanyBranding = {
   companyId: 'demo-company',
   companyName: 'Ramos Gear',
-  logoUrl: '/assets/logo.png',
+  logoUrl: 'assets/logo.png',
   accentColor: '#e11d2e',
 };
 
