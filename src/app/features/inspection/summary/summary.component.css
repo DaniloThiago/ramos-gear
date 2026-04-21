@@ -88,6 +88,11 @@ h1 {
   border: 1px solid rgba(148, 163, 184, 0.14);
 }
 
+.draft-card {
+  display: grid;
+  gap: 10px;
+}
+
 .section-head {
   display: flex;
   justify-content: space-between;
@@ -107,6 +112,21 @@ h1 {
 .items-card p,
 .items-card small {
   color: #9fb0c1;
+}
+
+.draft-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.draft-meta strong {
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.draft-meta p {
+  margin: 0;
+  line-height: 1.4;
 }
 
 .items-list {

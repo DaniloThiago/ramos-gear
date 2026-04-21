@@ -40,7 +40,7 @@ export class DashboardComponent {
   }
 
   vehicleLabel(record: InspectionRecord): string {
-    return `${record.vehicle.brand} ${record.vehicle.model} ${record.vehicle.year}`.trim();
+    return `${record.vehicle.brand} ${record.vehicle.model} ${record.vehicle.modelYear || record.vehicle.manufacturingYear || ''}`.trim();
   }
 
   decisionTone(decision: InspectionRecord['decision']): string {
@@ -54,4 +54,3 @@ export class DashboardComponent {
     }
   }
 }
-

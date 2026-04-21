@@ -41,6 +41,14 @@ export class SummaryComponent {
     this.selectedDecision.set(decision);
   }
 
+  decisionLabel(decision: FinalDecision): string {
+    if (decision === 'Nao recomendado') {
+      return 'Não recomendado';
+    }
+
+    return decision;
+  }
+
   updateGeneralNotes(event: Event): void {
     const input = event.target as HTMLTextAreaElement;
     this.generalNotes.set(input.value);

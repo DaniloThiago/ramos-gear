@@ -23,9 +23,21 @@ export interface CompanyBranding {
 
 export interface VehicleInfo {
   plate: string;
+  motorNumber: string;
+  chassisNumber: string;
+  vehicleType: string;
   brand: string;
   model: string;
-  year: string;
+  manufacturingYear: string;
+  modelYear: string;
+  species: string;
+  fuel: string;
+  color: string;
+  passengerCapacity: string;
+  enginePower: string;
+  displacement: string;
+  cmt: string;
+  pbt: string;
 }
 
 export interface CustomerInfo {

@@ -53,24 +53,41 @@
         <aside class="side-column">
           <section class="draft-card">
             <span class="label">Cliente</span>
-            <strong>{{ currentDraft.customer.name }}</strong>
-            <p>{{ currentDraft.customer.phone }}</p>
-            @if (currentDraft.customer.email) {
-              <p>{{ currentDraft.customer.email }}</p>
-            }
+            <div class="draft-meta">
+              <strong>{{ currentDraft.customer.name }}</strong>
+              <p>{{ currentDraft.customer.phone }}</p>
+              @if (currentDraft.customer.email) {
+                <p>{{ currentDraft.customer.email }}</p>
+              }
+            </div>
           </section>
 
           <section class="draft-card">
             <span class="label">Veículo</span>
-            <strong>{{ currentDraft.vehicle.brand }} {{ currentDraft.vehicle.model }}</strong>
-            <p>{{ currentDraft.vehicle.year }}</p>
-            <p>Placa: {{ currentDraft.vehicle.plate }}</p>
+            <div class="draft-meta">
+              <strong>{{ currentDraft.vehicle.brand }}</strong>
+              <p>{{ currentDraft.vehicle.model }}</p>
+              <p>Tipo: {{ currentDraft.vehicle.vehicleType }}</p>
+              <p>Espécie: {{ currentDraft.vehicle.species }}</p>
+              <p>Fabricação: {{ currentDraft.vehicle.manufacturingYear }}</p>
+              <p>Modelo: {{ currentDraft.vehicle.modelYear }}</p>
+              <p>Combustível: {{ currentDraft.vehicle.fuel }}</p>
+              <p>Cor: {{ currentDraft.vehicle.color }}</p>
+              <p>Motor: {{ currentDraft.vehicle.motorNumber }}</p>
+              <p>Chassi: {{ currentDraft.vehicle.chassisNumber }}</p>
+              <p>Passageiros: {{ currentDraft.vehicle.passengerCapacity }}</p>
+              <p>Potência: {{ currentDraft.vehicle.enginePower }}</p>
+              <p>Cilindradas: {{ currentDraft.vehicle.displacement }}</p>
+              <p>CMT: {{ currentDraft.vehicle.cmt }}</p>
+              <p>PBT: {{ currentDraft.vehicle.pbt }}</p>
+              <p>Placa: {{ currentDraft.vehicle.plate }}</p>
+            </div>
           </section>
 
           <section class="decision-card">
             <div class="section-head">
               <h2>Decisão final</h2>
-              <span>Sugerida: {{ suggestedDecision() }}</span>
+              <span>Sugerida: {{ decisionLabel(suggestedDecision()) }}</span>
             </div>
 
             <div class="decision-list">
@@ -82,7 +99,7 @@
                   [class.decision-button--suggested]="suggestedDecision() === decision"
                   (click)="selectDecision(decision)"
                 >
-                  <span>{{ decision }}</span>
+                  <span>{{ decisionLabel(decision) }}</span>
                   @if (suggestedDecision() === decision) {
                     <small>Sugerido</small>
                   }

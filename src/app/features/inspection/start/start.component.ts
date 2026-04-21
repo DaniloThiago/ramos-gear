@@ -68,9 +68,24 @@ export class StartComponent {
     customerPhone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)]],
     customerEmail: ['', [optionalEmailValidator()]],
     plate: ['', [Validators.required, plateValidator()]],
+    motorNumber: ['', [Validators.required]],
+    chassisNumber: ['', [Validators.required]],
+    vehicleType: ['', [Validators.required]],
     brand: ['', [Validators.required]],
     model: ['', [Validators.required]],
-    year: [new Date().getFullYear().toString(), [Validators.required, yearRangeValidator(this.yearMin, this.yearMax)]],
+    manufacturingYear: [
+      new Date().getFullYear().toString(),
+      [Validators.required, yearRangeValidator(this.yearMin, this.yearMax)],
+    ],
+    modelYear: [new Date().getFullYear().toString(), [Validators.required, yearRangeValidator(this.yearMin, this.yearMax)]],
+    species: ['', [Validators.required]],
+    fuel: ['', [Validators.required]],
+    color: ['', [Validators.required]],
+    passengerCapacity: ['', [Validators.required]],
+    enginePower: ['', [Validators.required]],
+    displacement: ['', [Validators.required]],
+    cmt: ['', [Validators.required]],
+    pbt: ['', [Validators.required]],
   });
 
   get customerName() {
@@ -89,6 +104,18 @@ export class StartComponent {
     return this.form.controls.plate;
   }
 
+  get motorNumber() {
+    return this.form.controls.motorNumber;
+  }
+
+  get chassisNumber() {
+    return this.form.controls.chassisNumber;
+  }
+
+  get vehicleType() {
+    return this.form.controls.vehicleType;
+  }
+
   get brand() {
     return this.form.controls.brand;
   }
@@ -97,8 +124,44 @@ export class StartComponent {
     return this.form.controls.model;
   }
 
-  get year() {
-    return this.form.controls.year;
+  get manufacturingYear() {
+    return this.form.controls.manufacturingYear;
+  }
+
+  get modelYear() {
+    return this.form.controls.modelYear;
+  }
+
+  get species() {
+    return this.form.controls.species;
+  }
+
+  get fuel() {
+    return this.form.controls.fuel;
+  }
+
+  get color() {
+    return this.form.controls.color;
+  }
+
+  get passengerCapacity() {
+    return this.form.controls.passengerCapacity;
+  }
+
+  get enginePower() {
+    return this.form.controls.enginePower;
+  }
+
+  get displacement() {
+    return this.form.controls.displacement;
+  }
+
+  get cmt() {
+    return this.form.controls.cmt;
+  }
+
+  get pbt() {
+    return this.form.controls.pbt;
   }
 
   onPhoneInput(event: Event): void {
@@ -141,9 +204,21 @@ export class StartComponent {
       },
       vehicle: {
         plate: this.plate.value.trim().toUpperCase(),
+        motorNumber: this.motorNumber.value.trim(),
+        chassisNumber: this.chassisNumber.value.trim(),
+        vehicleType: this.vehicleType.value.trim(),
         brand: this.brand.value.trim(),
         model: this.model.value.trim(),
-        year: this.year.value.trim(),
+        manufacturingYear: this.manufacturingYear.value.trim(),
+        modelYear: this.modelYear.value.trim(),
+        species: this.species.value.trim(),
+        fuel: this.fuel.value.trim(),
+        color: this.color.value.trim(),
+        passengerCapacity: this.passengerCapacity.value.trim(),
+        enginePower: this.enginePower.value.trim(),
+        displacement: this.displacement.value.trim(),
+        cmt: this.cmt.value.trim(),
+        pbt: this.pbt.value.trim(),
       },
       checklistId: 'padrao',
       currentStep: 0,
