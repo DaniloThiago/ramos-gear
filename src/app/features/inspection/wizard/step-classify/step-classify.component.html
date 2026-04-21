@@ -1,0 +1,40 @@
+<section class="step-card">
+  <div class="header">
+    <div>
+      <p class="eyebrow">Fase classificação</p>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.instruction }}</p>
+    </div>
+
+    @if (photo) {
+      <img [src]="photo" alt="Foto do item" />
+    }
+  </div>
+
+  @if (item.kind !== 'geral') {
+    <div class="radio-grid" [class.radio-grid--two-by-two]="choices().length === 4">
+      @for (choice of choices(); track choice) {
+        <label
+          class="radio-card"
+          [class.radio-card--selected]="classControl.value === choice"
+          [class.radio-card--success]="classControl.value === choice && choiceTone(choice) === 'success'"
+          [class.radio-card--warning]="classControl.value === choice && choiceTone(choice) === 'warning'"
+          [class.radio-card--danger]="classControl.value === choice && choiceTone(choice) === 'danger'"
+        >
+          <input class="radio-input" type="radio" name="classification" [value]="choice" [formControl]="classControl" />
+          <span>{{ choice }}</span>
+        </label>
+      }
+    </div>
+  }
+
+  <label class="notes">
+    <span>Observações</span>
+    <textarea rows="4" [formControl]="notesControl" placeholder="Observações opcionais"></textarea>
+  </label>
+
+  <div class="footer">
+    <button type="button" class="secondary" (click)="previous.emit()">Voltar</button>
+    <button type="button" class="primary" [disabled]="isNextDisabled" (click)="next.emit()">Próximo</button>
+  </div>
+</section>

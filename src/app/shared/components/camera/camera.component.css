@@ -1,0 +1,10 @@
+.camera-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #5eead4, #0f766e);
+  color: #04111a;
+  font-weight: 800;
+  cursor: pointer;
+}
+

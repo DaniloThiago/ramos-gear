@@ -1,0 +1,73 @@
+<main class="page-shell">
+  <section class="panel">
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Etapa 5 / wizard</p>
+        <h1>Vistoria guiada</h1>
+        <p class="subtitle">
+          {{ stepLabel() }}
+        </p>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="ghost" type="button" (click)="previousStep()">Voltar</button>
+        <a class="ghost" routerLink="/inspection/start">Sair do fluxo</a>
+      </div>
+    </div>
+
+    <div class="progress-shell">
+      <div class="progress-track">
+        <span class="progress-fill" [style.width.%]="progress()"></span>
+      </div>
+      <div class="progress-meta">
+        <span>{{ currentIndex() }} / {{ totalItems() }}</span>
+        <span>{{ progress().toFixed(0) }}%</span>
+      </div>
+    </div>
+
+    @if (currentItem(); as item) {
+      <div class="wizard-grid">
+        @if (phase() === 'photo') {
+          <app-step-photo
+            [item]="item"
+            [photo]="item.photo"
+            (photoCaptured)="capturePhoto($event)"
+            (confirmPhoto)="confirmPhoto()"
+            (redoPhoto)="redoPhoto()"
+          />
+        } @else {
+          <app-step-classify
+            [item]="item"
+            [photo]="item.photo"
+            [currentClass]="currentClass"
+            [notes]="currentNotes"
+            (classificationChange)="updateClassification($event)"
+            (previous)="previousStep()"
+            (next)="nextStep()"
+          />
+        }
+
+        <aside class="side-panel">
+          <div class="side-card">
+            <span class="side-label">Item atual</span>
+            <strong>{{ item.title }}</strong>
+            <p>{{ item.instruction }}</p>
+          </div>
+
+          <div class="side-card compact">
+            <span class="side-label">Progresso</span>
+            <strong>{{ currentIndex() }} de {{ totalItems() }}</strong>
+            <p>Fase: {{ phase() === 'photo' ? 'Foto' : 'Classificação' }}</p>
+          </div>
+
+          @if (item.photo) {
+            <div class="side-card">
+              <span class="side-label">Miniatura</span>
+              <img class="thumb" [src]="item.photo" alt="Miniatura da foto atual" />
+            </div>
+          }
+        </aside>
+      </div>
+    }
+  </section>
+</main>

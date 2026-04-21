@@ -1,0 +1,23 @@
+<section class="step-card">
+  <div class="step-head">
+    <p class="eyebrow">Fase foto</p>
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.instruction }}</p>
+  </div>
+
+  @if (photo) {
+    <div class="photo-preview">
+      <img [src]="photo" alt="Foto capturada" />
+      <div class="photo-actions">
+        <button type="button" class="secondary" (click)="redoPhoto.emit()">Refazer</button>
+        <button type="button" class="primary" (click)="confirmPhoto.emit()">Confirmar foto</button>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-photo">
+      <span>Abra a câmera para registrar a imagem do item.</span>
+      <app-camera (photoCapture)="onCapture($event)" />
+    </div>
+  }
+</section>
+

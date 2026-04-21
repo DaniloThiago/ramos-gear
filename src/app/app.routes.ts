@@ -22,8 +22,8 @@ export const routes: Routes = [
   {
     path: 'inspection',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/inspection/inspection.component').then((m) => m.InspectionComponent),
+    loadChildren: () =>
+      import('./features/inspection/inspection.routes').then((m) => m.inspectionRoutes),
   },
   {
     path: 'admin',

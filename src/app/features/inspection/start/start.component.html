@@ -1,0 +1,150 @@
+<main class="page-shell">
+  <section class="panel">
+    <div class="header">
+      <div>
+        <p class="eyebrow">Etapa 4 / inicio da vistoria</p>
+        <h1>Cadastro de cliente e veículo</h1>
+        <p class="subtitle">
+          Preencha os dados iniciais para gerar um draft seguro, rápido e pronto para seguir ao wizard.
+        </p>
+      </div>
+
+      <a class="ghost" routerLink="/dashboard">Voltar ao dashboard</a>
+    </div>
+
+    @if (hasDraft()) {
+      <div class="draft-modal">
+        <div class="draft-card">
+          <span class="badge">Draft encontrado</span>
+          <h2>Existe uma vistoria salva anteriormente</h2>
+          <p>
+            Você pode continuar de onde parou ou iniciar uma vistoria nova. O fluxo foi pensado para
+            não perder trabalho em campo.
+          </p>
+
+          <div class="draft-actions">
+            <button class="primary" type="button" (click)="continuePrevious()">Continuar anterior</button>
+            <button class="secondary" type="button" (click)="startNew()">Iniciar nova</button>
+          </div>
+
+          @if (draftPreview(); as draft) {
+            <div class="draft-preview">
+              <strong>{{ draft.customer.name }}</strong>
+              <span>{{ draft.vehicle.brand }} {{ draft.vehicle.model }} {{ draft.vehicle.year }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <form class="form-grid" [formGroup]="form" (ngSubmit)="submit()">
+      <section class="form-section">
+        <div class="section-head">
+          <h2>Cliente</h2>
+          <span>Dados obrigatórios antes da vistoria</span>
+        </div>
+
+        <label>
+          <span>Nome do cliente</span>
+          <input type="text" formControlName="customerName" placeholder="Nome completo" />
+          @if (customerName.touched && customerName.errors?.['required']) {
+            <small>Informe o nome do cliente.</small>
+          }
+          @if (customerName.touched && customerName.errors?.['minlength']) {
+            <small>O nome deve ter ao menos 3 caracteres.</small>
+          }
+        </label>
+
+        <label>
+          <span>Celular</span>
+          <input
+            type="tel"
+            formControlName="customerPhone"
+            placeholder="(11) 99999-9999"
+            inputmode="numeric"
+            maxlength="15"
+            (input)="onPhoneInput($event)"
+          />
+          @if (customerPhone.touched && customerPhone.errors?.['required']) {
+            <small>Informe o celular.</small>
+          }
+          @if (customerPhone.touched && customerPhone.errors?.['pattern']) {
+            <small>Use o formato (00) 00000-0000.</small>
+          }
+        </label>
+
+        <label>
+          <span>E-mail do cliente</span>
+          <input type="email" formControlName="customerEmail" placeholder="cliente@email.com" />
+          @if (customerEmail.touched && customerEmail.errors?.['email']) {
+            <small>Informe um e-mail válido ou deixe em branco.</small>
+          }
+        </label>
+      </section>
+
+      <section class="form-section">
+        <div class="section-head">
+          <h2>Veículo</h2>
+          <span>Identificação da vistoria</span>
+        </div>
+
+        <label>
+          <span>Placa</span>
+          <input
+            type="text"
+            formControlName="plate"
+            placeholder="ABC1D23 ou ABC-1234"
+            style="text-transform: uppercase"
+            (input)="onPlateInput($event)"
+          />
+          @if (plate.touched && plate.errors?.['required']) {
+            <small>Informe a placa.</small>
+          }
+          @if (plate.touched && plate.errors?.['plate']) {
+            <small>Use placa antiga ou Mercosul.</small>
+          }
+        </label>
+
+        <div class="grid-2">
+          <label>
+            <span>Marca</span>
+            <input type="text" formControlName="brand" placeholder="Toyota" />
+            @if (brand.touched && brand.errors?.['required']) {
+              <small>Informe a marca.</small>
+            }
+          </label>
+
+          <label>
+            <span>Modelo</span>
+            <input type="text" formControlName="model" placeholder="Corolla" />
+            @if (model.touched && model.errors?.['required']) {
+              <small>Informe o modelo.</small>
+            }
+          </label>
+        </div>
+
+        <label>
+          <span>Ano</span>
+          <input type="number" formControlName="year" [min]="yearMin" [max]="yearMax" />
+          @if (year.touched && year.errors?.['required']) {
+            <small>Informe o ano.</small>
+          }
+          @if (year.touched && year.errors?.['yearRange']) {
+            <small>Use um ano entre {{ yearMin }} e {{ yearMax }}.</small>
+          }
+        </label>
+      </section>
+
+      <div class="footer">
+        <div class="hint">
+          <strong>Salvamento automático preparado</strong>
+          <span>O draft será enviado para a próxima etapa com segurança.</span>
+        </div>
+
+        <button class="primary submit" type="submit" [disabled]="form.invalid">
+          Iniciar Vistoria
+        </button>
+      </div>
+    </form>
+  </section>
+</main>

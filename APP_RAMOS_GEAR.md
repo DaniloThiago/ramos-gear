@@ -1021,73 +1021,73 @@ export class WizardComponent {
 
 ---
 
-#### Etapa 3 — Dashboard (tela inicial) ⏳ não iniciado
+#### Etapa 3 — Dashboard (tela inicial) ✅ concluida
 
 **Checklist:**
-- [ ] Criar `src/app/core/inspection/inspection.service.ts` com signal `inspections` lendo do localStorage
-- [ ] Criar `src/app/features/dashboard/dashboard.component.ts` injetando `AuthService` e `InspectionService`
-- [ ] Criar `src/app/features/dashboard/dashboard.component.html` com layout mobile-first
-- [ ] Exibir nome do usuário logado e nome da empresa no topo
-- [ ] Botão principal **"+ Nova Vistoria"** em destaque (tamanho grande, cor de destaque)
-- [ ] Renderizar lista de cards de vistorias: data formatada, `marca modelo ano`, badge de resultado
-- [ ] Badge colorido: verde=Aprovado, amarelo=Aprovado com apontamentos, vermelho=Não recomendado
-- [ ] Estado vazio: ilustração ou ícone + mensagem "Nenhuma vistoria realizada ainda"
-- [ ] Ordenar lista por `createdAt` decrescente, limitar a 20 itens
-- [ ] Ícone ⚙️ visível apenas quando `isAdmin()` → navega para `/admin`
-- [ ] Botão "Sair" chama `AuthService.logout()` e redireciona para `/login`
-- [ ] Registrar rota `/dashboard` em `app.routes.ts` com `AuthGuard`
+- [x] Criar `src/app/core/inspection/inspection.service.ts` com signal `inspections` lendo do localStorage
+- [x] Criar `src/app/features/dashboard/dashboard.component.ts` injetando `AuthService` e `InspectionService`
+- [x] Criar `src/app/features/dashboard/dashboard.component.html` com layout mobile-first
+- [x] Exibir nome do usuário logado e nome da empresa no topo
+- [x] Botão principal **"+ Nova Vistoria"** em destaque (tamanho grande, cor de destaque)
+- [x] Renderizar lista de cards de vistorias: data formatada, `marca modelo ano`, badge de resultado
+- [x] Badge colorido: verde=Aprovado, amarelo=Aprovado com apontamentos, vermelho=Não recomendado
+- [x] Estado vazio: ilustração ou ícone + mensagem "Nenhuma vistoria realizada ainda"
+- [x] Ordenar lista por `createdAt` decrescente, limitar a 20 itens
+- [x] Ícone ⚙️ visível apenas quando `isAdmin()` -> navega para `/admin`
+- [x] Botão "Sair" chama `AuthService.logout()` e redireciona para `/login`
+- [x] Registrar rota `/dashboard` em `app.routes.ts` com `AuthGuard`
 
 **Entregável:** dashboard renderizando lista de vistorias do localStorage.
 
 ---
 
-#### Etapa 4 — Cadastro de cliente e veículo ⏳ não iniciado
+#### Etapa 4 — Cadastro de cliente e veículo ✅ concluida
 
 **Checklist:**
-- [ ] Criar `src/app/features/inspection/start/start.component.ts` com `ReactiveFormsModule`
-- [ ] Criar `src/app/features/inspection/start/start.component.html` com formulário em seções (Cliente / Veículo)
-- [ ] Adicionar `provideReactiveFormsModule` (ou importar `ReactiveFormsModule`) ao componente standalone
-- [ ] Campo **Nome do cliente**: obrigatório, `minLength(3)`
-- [ ] Campo **Celular**: obrigatório, validador de padrão `(00) 00000-0000`
-- [ ] Campo **E-mail do cliente**: opcional, validador `Validators.email`
-- [ ] Campo **Placa**: obrigatório, regex `[A-Z]{3}-?\d{4}` (antiga) ou `[A-Z]{3}\d[A-Z]\d{2}` (Mercosul)
-- [ ] Campo **Marca**: obrigatório
-- [ ] Campo **Modelo**: obrigatório
-- [ ] Campo **Ano**: obrigatório, `min(1950)`, `max(anoAtual + 1)`
-- [ ] Exibir erros de validação inline ao tocar e sair de cada campo
-- [ ] Botão "Iniciar Vistoria" desabilitado enquanto formulário inválido
-- [ ] Ao submeter: criar `AppDraft` inicial e salvar na chave `ramos-gear.draft` via `InspectionService.saveDraft()`
-- [ ] Se já existir draft no localStorage: exibir modal/alerta com opções "Continuar anterior" ou "Iniciar nova"
-- [ ] Navegar para `/inspection/wizard` após salvar o draft
-- [ ] Registrar rotas `/inspection/start` e `/inspection/wizard` em `inspection.routes.ts`
+- [x] Criar `src/app/features/inspection/start/start.component.ts` com `ReactiveFormsModule`
+- [x] Criar `src/app/features/inspection/start/start.component.html` com formulário em seções (Cliente / Veículo)
+- [x] Adicionar `provideReactiveFormsModule` (ou importar `ReactiveFormsModule`) ao componente standalone
+- [x] Campo **Nome do cliente**: obrigatório, `minLength(3)`
+- [x] Campo **Celular**: obrigatório, validador de padrão `(00) 00000-0000`
+- [x] Campo **E-mail do cliente**: opcional, validador `Validators.email`
+- [x] Campo **Placa**: obrigatório, regex `[A-Z]{3}-?\d{4}` (antiga) ou `[A-Z]{3}\d[A-Z]\d{2}` (Mercosul)
+- [x] Campo **Marca**: obrigatório
+- [x] Campo **Modelo**: obrigatório
+- [x] Campo **Ano**: obrigatório, `min(1950)`, `max(anoAtual + 1)`
+- [x] Exibir erros de validação inline ao tocar e sair de cada campo
+- [x] Botão "Iniciar Vistoria" desabilitado enquanto formulário inválido
+- [x] Ao submeter: criar `AppDraft` inicial e salvar na chave `ramos-gear.draft` via `InspectionService.saveDraft()`
+- [x] Se já existir draft no localStorage: exibir modal/alerta com opções "Continuar anterior" ou "Iniciar nova"
+- [x] Navegar para `/inspection/wizard` após salvar o draft
+- [x] Registrar rotas `/inspection/start` e `/inspection/wizard` em `inspection.routes.ts`
 
 **Entregável:** formulário validado que inicia o draft e navega para o wizard.
 
 ---
 
-#### Etapa 5 — Wizard de vistoria (passo a passo) ⏳ não iniciado
+#### Etapa 5 — Wizard de vistoria (passo a passo) ✅ concluida
 
 **Checklist:**
-- [ ] Criar `src/app/shared/components/camera/camera.component.ts` com `<input type="file" accept="image/*" capture="environment">`
-- [ ] Implementar `compressImage()` no `CameraComponent` via Canvas API (maxWidth 1280, quality 0.7)
-- [ ] Emitir evento `(photoCapture)` com a string base64 comprimida
-- [ ] Criar `src/app/features/inspection/wizard/step-photo/step-photo.component.ts` recebendo `@Input() item`
-- [ ] `StepPhotoComponent`: exibir título + instrução + botão "Fotografar" que aciona o `CameraComponent`
-- [ ] `StepPhotoComponent`: exibir miniatura após captura + botão "Refazer"
-- [ ] `StepPhotoComponent`: botão "Confirmar foto" emite `(confirmed)` para o wizard
-- [ ] Criar `src/app/features/inspection/wizard/step-classify/step-classify.component.ts`
-- [ ] `StepClassifyComponent`: exibir miniatura da foto + radio buttons conforme `item.kind`
+- [x] Criar `src/app/shared/components/camera/camera.component.ts` com `<input type="file" accept="image/*" capture="environment">`
+- [x] Implementar `compressImage()` no `CameraComponent` via Canvas API (maxWidth 1280, quality 0.7)
+- [x] Emitir evento `(photoCapture)` com a string base64 comprimida
+- [x] Criar `src/app/features/inspection/wizard/step-photo/step-photo.component.ts` recebendo `@Input() item`
+- [x] `StepPhotoComponent`: exibir título + instrução + botão "Fotografar" que aciona o `CameraComponent`
+- [x] `StepPhotoComponent`: exibir miniatura após captura + botão "Refazer"
+- [x] `StepPhotoComponent`: botão "Confirmar foto" emite `(confirmed)` para o wizard
+- [x] Criar `src/app/features/inspection/wizard/step-classify/step-classify.component.ts`
+- [x] `StepClassifyComponent`: exibir miniatura da foto + radio buttons conforme `item.kind`
   - `pintura` → Original / Repintura / Retrabalhada / Substituída
   - `estrutura` → Original / Reparo / Avariada
   - `geral` → somente campo de observações (sem radio)
-- [ ] `StepClassifyComponent`: campo de observações livre (opcional)
-- [ ] `StepClassifyComponent`: botão "Próximo" desabilitado enquanto nenhuma opção selecionada (exceto `geral`)
-- [ ] Criar `src/app/features/inspection/wizard/wizard.component.ts` com signals `step` e `phase`
-- [ ] `WizardComponent`: carregar itens do draft existente (para retomada) ou do checklist padrão
-- [ ] `WizardComponent`: barra de progresso + texto "Item X de Y — [título]"
-- [ ] `WizardComponent`: botão "Voltar" navega ao item/fase anterior sem perder dados
-- [ ] `WizardComponent`: autosave no localStorage via `InspectionService.saveDraft()` após cada classificação
-- [ ] `WizardComponent`: ao concluir último item, navegar para `/inspection/summary`
+- [x] `StepClassifyComponent`: campo de observações livre (opcional)
+- [x] `StepClassifyComponent`: botão "Próximo" desabilitado enquanto nenhuma opção selecionada (exceto `geral`)
+- [x] Criar `src/app/features/inspection/wizard/wizard.component.ts` com signals `step` e `phase`
+- [x] `WizardComponent`: carregar itens do draft existente (para retomada) ou do checklist padrão
+- [x] `WizardComponent`: barra de progresso + texto "Item X de Y — [título]"
+- [x] `WizardComponent`: botão "Voltar" navega ao item/fase anterior sem perder dados
+- [x] `WizardComponent`: autosave no localStorage via `InspectionService.saveDraft()` após cada classificação
+- [x] `WizardComponent`: ao concluir último item, navegar para `/inspection/summary`
 
 **Fluxo por item do checklist:**
 1. **Fase foto:** exibe título do item + instrução + botão "Fotografar"

@@ -1,0 +1,23 @@
+<main class="page-shell">
+  <section class="panel">
+    <p class="eyebrow">Resumo</p>
+    <h1>Etapa 5 concluída</h1>
+    <p class="subtitle">
+      O fluxo de fotos e classificações está pronto para seguir para o laudo e o diagrama na próxima etapa.
+    </p>
+
+    @if (inspectionService.draft(); as draft) {
+      <div class="draft-card">
+        <strong>{{ draft.customer.name }}</strong>
+        <span>{{ draft.vehicle.brand }} {{ draft.vehicle.model }} {{ draft.vehicle.year }}</span>
+        <span>Item atual: {{ draft.currentStep + 1 }}</span>
+      </div>
+    }
+
+    <div class="actions">
+      <a class="secondary" routerLink="/inspection/start">Voltar ao início</a>
+      <a class="primary" routerLink="/dashboard">Ir ao dashboard</a>
+    </div>
+  </section>
+</main>
+

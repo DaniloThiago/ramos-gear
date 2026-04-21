@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.page-shell {
+  min-height: 100dvh;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(20, 184, 166, 0.18), transparent 34%),
+    linear-gradient(160deg, #06101a 0%, #0b1622 45%, #112536 100%);
+  color: #e5eef7;
+}
+
+.panel {
+  width: min(100%, 900px);
+  padding: clamp(20px, 4vw, 36px);
+  border-radius: 32px;
+  background: rgba(8, 15, 24, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #5eead4;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.subtitle {
+  margin: 14px 0 0;
+  color: #c9d4e5;
+}
+
+.draft-card {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  display: grid;
+  gap: 6px;
+}
+
+.draft-card span {
+  color: #9fb0c1;
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary,
+.secondary {
+  border-radius: 999px;
+  padding: 14px 18px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.primary {
+  background: linear-gradient(135deg, #5eead4, #0f766e);
+  color: #04111a;
+}
+
+.secondary {
+  background: rgba(148, 163, 184, 0.12);
+  color: #edf2f7;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+

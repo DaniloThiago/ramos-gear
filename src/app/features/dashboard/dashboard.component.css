@@ -15,9 +15,9 @@
 }
 
 .panel {
-  width: min(100%, 900px);
-  padding: 32px;
-  border-radius: 28px;
+  width: min(100%, 1120px);
+  padding: clamp(20px, 4vw, 36px);
+  border-radius: 32px;
   background: rgba(8, 15, 24, 0.8);
   border: 1px solid rgba(148, 163, 184, 0.18);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
@@ -34,7 +34,7 @@
 
 h1 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3.1rem);
 }
 
 .subtitle {
@@ -43,15 +43,21 @@ h1 {
   max-width: 60ch;
 }
 
-.actions {
-  margin-top: 28px;
+.topbar {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.topbar-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.actions a,
-.actions button {
+.icon-button,
+.ghost {
   border: 0;
   border-radius: 999px;
   padding: 14px 18px;
@@ -65,10 +71,214 @@ h1 {
   color: #04111a;
 }
 
-.secondary,
 .ghost {
   background: rgba(148, 163, 184, 0.12);
   color: #edf2f7;
   border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(148, 163, 184, 0.12);
+  color: #edf2f7;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.hero-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.65fr);
+  gap: 16px;
+}
+
+.cta,
+.metric-card {
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.cta {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  text-decoration: none;
+  color: #04111a;
+  background: linear-gradient(135deg, #5eead4, #0f766e);
+}
+
+.cta span {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.cta strong {
+  font-size: 1.5rem;
+}
+
+.cta small {
+  color: rgba(4, 17, 26, 0.82);
+}
+
+.metric-card {
+  padding: 22px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.metric-card span,
+.section-head span {
+  color: #9fb0c1;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.metric-card strong {
+  font-size: 2.1rem;
+}
+
+.metric-card small,
+.section-head span {
+  color: #9fb0c1;
+}
+
+.list-section {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 42px 20px;
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.68);
+  border: 1px dashed rgba(148, 163, 184, 0.18);
+}
+
+.empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #5eead4;
+  background: rgba(94, 234, 212, 0.1);
+}
+
+.empty-icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+.empty-state h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #c9d4e5;
+  max-width: 58ch;
+}
+
+.inspection-list {
+  display: grid;
+  gap: 12px;
+}
+
+.inspection-card {
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.inspection-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.inspection-date,
+.inspection-client {
+  margin: 0;
+  color: #9fb0c1;
+}
+
+.inspection-card h3 {
+  margin: 4px 0;
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.badge--success {
+  background: rgba(34, 197, 94, 0.14);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.18);
+}
+
+.badge--warning {
+  background: rgba(250, 204, 21, 0.14);
+  color: #fde68a;
+  border: 1px solid rgba(250, 204, 21, 0.18);
+}
+
+.badge--danger {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.18);
+}
+
+.inspection-card__footer {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  color: #c9d4e5;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .topbar,
+  .inspection-card__head,
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
